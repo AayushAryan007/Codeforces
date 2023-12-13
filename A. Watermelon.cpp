@@ -131,24 +131,33 @@ void printBinary(int num){
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
-void solve()
-{
-    int n;
-    cin >> n;
 
-    vector<pair<int, int>> vp;
-
-    int i = 2;
-    while (i < n) {
-        vp.push_back(make_pair(i, n - i));
-        
-        i = i + 2;
-    }
-
-    for (auto pair : vp) {
-        cout << pair.first << " " << pair.second << endl;
-    }
+void solve(){
+	int n;
+	cin>>n;
+	if(n>=4 and n%2==0)
+	cout<<"YES"<<endl;
+	else
+	cout<<"NO"<<endl;
 }
+// void solve()
+// {
+    // int n;
+    // cin >> n;
+// 
+    // vector<pair<int, int>> vp;
+// 
+    // int i = 2;
+    // while (i < n) {
+        // vp.push_back(make_pair(i, n - i));
+//         
+        // i = i + 2;
+    // }
+// 
+    // for (auto pair : vp) {
+        // cout << pair.first << " " << pair.second << endl;
+    // }
+// }
 
 
 
