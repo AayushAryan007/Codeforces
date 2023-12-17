@@ -1,0 +1,327 @@
+// Problem: B. Collecting Game
+// Contest: Codeforces - Codeforces Round 914 (Div. 2)
+// URL: https://codeforces.com/contest/1904/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+#include <bits/stdc++.h> 
+using namespace std;  
+#define endl "\n"
+#define lo long long
+#define dob long double
+#define ll long long int
+#define mod 1e9+7
+#define pb(n) push_back(n)
+#define mp(a,b) make_pair(a,b)
+#define all(x) x.begin(), x.end()
+#define rall(x) x.rbegin(), x.rend()
+#define fr(i, x, n) for (ll i = x; i < n; i++)
+#define nfr(i, x, n) for (int i = x; i > n; i--)
+#define sp(x) setprecision(x)
+#define vi vector<int>
+#define vpp vector<pair<int,int>>
+#define vs vector<string>
+#define vll vector<long long>
+#define in(v)  for(auto &item : v) cin>>item;
+#define inp(v)  for(auto &item : v) cin>>item.ff>>item.ss;
+#define up(x, y) upper_bound(x.begin(), x.end(), y)
+#define ss second
+#define ff first
+//count set bits\|/
+#define bp(a) __builtin_popcount(a)
+
+int binpow(int a, int b)
+{
+  if(b==0)
+  return 1;
+  int res=binpow(a,b/2);
+
+  if(b%2)
+  return res*res*a;
+  else
+  return res*res;
+}
+
+int gcd(int a, int b)
+{
+    // Everything divides 0
+    if (a == 0)
+       return b;
+    if (b == 0)
+       return a;
+  
+    // base case
+    if (a == b)
+        return a;
+  
+    // a is greater
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+
+//prime ll
+bool isprime(long long int n)  //to check prime
+{
+    for(int i=2; i*i<=n; i++)
+    {
+        if(n%i==0)return false;
+    }
+    return true;
+}
+//prime int
+bool isPrime(int n) 
+{ 
+    // Corner cases 
+    if (n <= 1) 
+        return false; 
+    if (n <= 3) 
+        return true; 
+  
+    // This is checked so that we can skip 
+    // middle five numbers in below loop 
+    if (n % 2 == 0 || n % 3 == 0) 
+        return false; 
+  
+    for (int i = 5; i * i <= n; i = i + 6) 
+        if (n % i == 0 || n % (i + 2) == 0) 
+            return false; 
+  
+    return true; 
+} 
+
+
+int LIS(vector<int> &a)//returns longest non decreasing subsequence
+{
+  //lnds[i]=element at which an increasng subsequence of length 'i' ends
+
+  vector<int> lis;
+  for(auto &x:a)
+  {
+    auto it=upper_bound(lis.begin(),lis.end(), x); //upper_bound for non-decreasing
+    if(it==lis.end())
+    lis.push_back(x);
+    else
+    *it=x;
+  }
+
+  return lis.size();
+}
+ 
+ //iota(v.begin(),v.end(),1); assign 1-n incrementation in vector
+ void reverse(int arr[], int index, int count)
+{
+    if (index < count)
+    {
+        swap(arr[index], arr[count]);
+        reverse(arr, index + 1, count - 1);
+    }
+}
+
+//print binary of int ,10 bits
+void printBinary(int num){
+	for(int i=10;i>=0;i--){
+		cout<<((num>>i)&1);
+	}
+	cout<<endl;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+
+// 
+// void solve(){
+	// int n;
+	// cin>>n;
+	// vi a(n);
+	// fr(i,0,n) cin>>a[i];
+// 	
+	// vi arr=a;
+	// sort(all(arr));
+	// vi pre(n,0);
+// 	
+	// pre[0]=arr[0];
+	// fr(i,1,n){
+		// pre[i]=pre[i-1]+arr[i];
+	// }
+// 	
+	// vector<int> ans(n);
+	// fr(i,0,n) ans[i]=i;
+	// for(int i=n-1;i>0;i--){
+		// if(arr[i]<=pre[i-1]) ans[i-1]=ans[i];
+	// }
+// 	
+	// fr(i,0,n){
+		// int ind=upper_bound(all(arr),a[i])-arr.begin();
+		// // int ind = ub(arr, a[i]) - arr.begin();
+// 
+		// cout<<ans[ind-1]<<" ";
+	// }cout<<endl;
+// }
+
+
+void solve(){
+	ll n;
+	cin>>n;
+	
+	vector<ll> a(n);
+	fr(i,0,n){
+		cin>>a[i];
+	}
+	vector<pair<ll,ll>>vp;
+	fr(i,0,n) vp.pb(mp(a[i],i));
+	sort(all(vp));
+	ll ans[n]={0};
+	ll pre[n]={0};
+	ll sum=0;
+	fr(i,0,n){
+		sum+=vp[i].ff;
+		pre[i]=sum;
+	}
+	
+	ll j=0;
+	fr(i,0,n){
+		j=max(j,i);
+		while(j<n-1 and  pre[j]>=vp[j+1].ff){
+			j++;
+		}
+		
+		ans[vp[i].ss]=j;
+	}
+	fr(i,0,n) cout<<ans[i]<<" ";
+	cout<<endl;
+	
+}
+
+
+// void solve(){
+	// int n;
+    // cin >> n;
+    // vector<pair<int, int>> vp(n);
+// 
+    // for (int i = 0; i < n; ++i) {
+        // cin >> vp[i].first;
+        // vp[i].second = i;
+    // }
+// 
+    // sort(vp.begin(), vp.end());
+    // vector<int> pre(n);
+    // int sum = 0;
+    // for (int i = 0; i < n; ++i) {
+        // sum += vp[i].first;
+        // pre[i] = sum;
+    // }
+// 
+    // vector<int> ans(n, 0);
+    // ans[0] = 0;
+    // ans[n - 1] = n - 1;
+// 
+    // for (int i = 0; i < n-1; ++i) {
+        // int x = i;
+        // if (pre[i] >= vp[i + 1].first) {
+            // x += 1;
+        // }
+        // ans[vp[i].second] = x; // Assign x to corresponding index
+    // }
+// 
+    // for (int i = 0; i < n; ++i) {
+        // cout << ans[i] << " ";
+    // }
+    // cout << endl;
+// }
+
+// void solve(){
+	// ll n;
+	// cin>>n;
+	// vector<pair<ll,ll>>vp(n),cp(n);
+// 	
+	// for(ll i=0;i<n;i++){
+		// cin>>vp[i].first;
+		// vp[i].second=i;
+	// }
+	// cp=vp;
+// 	
+	// sort(all(vp));
+	// ll sum=0;
+	// vll pre(n,0);
+	// for(ll i=0;i<n;i++){
+		// sum+=vp[i].first;
+		// pre[i]+=sum;
+	// }
+// 	
+	// vll ans(n);
+	// for(ll i=0;i<n;i++){
+		// ll x=i;
+		// ll j=i+1;
+		// while(pre[i]>=vp[j].first and j<n){
+// 			
+			// x++;
+			// j++;
+		// }
+// 		
+		// ans[vp[i].second]=x;
+		// // smax[vp[i].first]=max(smax[vp[i].first],x);
+// 		
+	// }
+// 	
+// map<ll, ll> smax;
+    // for (ll i = 0; i < n; ++i) {
+        // if (smax.find(cp[i].first) == smax.end()) {
+            // smax[cp[i].first] = ans[i];
+        // } else {
+            // smax[cp[i].first] = std::max(smax[cp[i].first], ans[i]);
+        // }
+    // }
+// 
+    // for (ll i = 0; i < n; ++i) {
+       // cout << smax[cp[i].first] << " ";
+    // }
+   // cout <<endl;
+	// // fr(i,0,n){
+		// // cout<<ans[i]<<" ";
+// // 		
+	// // }cout<<endl;
+// // 	
+// 	
+// 	
+// }
+
+int main()  
+{
+    ios_base::sync_with_stdio(false);  
+    cin.tie(NULL); cout.tie(NULL); // flushes cout  
+    
+    //start writing below
+    int t;
+    cin>>t;
+    while(t--)
+    {
+       solve(); 
+    }
+ 
+    return 0;  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
