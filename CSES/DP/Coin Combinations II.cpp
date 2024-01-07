@@ -1,7 +1,7 @@
-// Problem: Make All Zero
-// Contest: CodeChef - START115B
-// URL: https://www.codechef.com/START115B/problems/MAKE0?tab=statement
-// Memory Limit: 256 MB
+// Problem: Coin Combinations II
+// Contest: CSES - CSES Problem Set
+// URL: https://cses.fi/problemset/task/1636
+// Memory Limit: 512 MB
 // Time Limit: 1000 ms
 // 
 // Powered by CP Editor (https://cpeditor.org)
@@ -139,29 +139,29 @@ void printBinary(int num){
 
 void solve()
 {
-   int n;
-   cin>>n;
-   
-   vi a(n);
-   fr(i,0,n){
-   	cin>>a[i];
-   }  
-   vi m;
-   m.pb(a[0]);
-   
-   fr(i,1,n){
-   	if(a[i]<=m.back())
-   	m.pb(a[i]);
-   	
-   }
-   
-   reverse(all(m));
-   int ans=n;
-   fr(i,0,m.size()){
-   	ans=min(ans,n-i-1+m[i]);
-   	
-   }
-   cout<<ans<<endl;
+     int n,x;
+     cin>>n>>x;
+     vi a(n);
+     fr(i,0,n){
+     	cin>>a[i];
+     }
+     vector<vector<int>> dp(n+1,vector<int>(x+1));
+     
+     fr(i,0,n){
+     	dp[i][0]=1;
+     	
+     }
+     
+     for(int i=n-1;i>=0;i--){
+     	for(int sum=1;sum<=x;sum++){
+     		int notTake=dp[i+1][sum];
+     		int take=0;
+     		if(a[i]<=sum)
+     		take=dp[i][sum-a[i]];
+     		dp[i][sum]=(take+notTake)%mod;
+     	}
+     }
+     cout<<dp[0][x]<<endl;
 }
 
 
@@ -171,12 +171,9 @@ int main()
     cin.tie(NULL); cout.tie(NULL); // flushes cout  
     
     //start writing below
-    int t;
-    cin>>t;
-    while(t--)
-    {
+   
        solve(); 
-    }
+    
  
     return 0;  
 }

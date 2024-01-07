@@ -201,11 +201,7 @@ void solve(){
      fr(i,0,n){
      	cin>>v[i];
      	
-     	if(a>b) {
-     		int t=a;
-     		a=b;b=t;
-     		
-     	}
+     	
      	if (a>=v[i]) {
                 a = v[i];
             } else if (b>=v[i]) {

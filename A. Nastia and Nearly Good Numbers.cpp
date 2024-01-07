@@ -1,6 +1,6 @@
-// Problem: Make All Zero
-// Contest: CodeChef - START115B
-// URL: https://www.codechef.com/START115B/problems/MAKE0?tab=statement
+// Problem: A. Nastia and Nearly Good Numbers
+// Contest: Codeforces - Codeforces Round 720 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/1521/A
 // Memory Limit: 256 MB
 // Time Limit: 1000 ms
 // 
@@ -139,29 +139,19 @@ void printBinary(int num){
 
 void solve()
 {
-   int n;
-   cin>>n;
-   
-   vi a(n);
-   fr(i,0,n){
-   	cin>>a[i];
-   }  
-   vi m;
-   m.pb(a[0]);
-   
-   fr(i,1,n){
-   	if(a[i]<=m.back())
-   	m.pb(a[i]);
-   	
-   }
-   
-   reverse(all(m));
-   int ans=n;
-   fr(i,0,m.size()){
-   	ans=min(ans,n-i-1+m[i]);
-   	
-   }
-   cout<<ans<<endl;
+     ll a,b;
+     cin>>a>>b;
+     
+     if(b==1){
+     	cout<<"NO"<<endl;
+     }
+     else
+     {
+     	cout<<"YES"<<endl;
+     	
+     	 cout<<a<<" "<<a*b<<" "<<(b+1)*a<<endl;
+     }
+    
 }
 
 
@@ -177,6 +167,8 @@ int main()
     {
        solve(); 
     }
+    
+    // solve();
  
     return 0;  
 }

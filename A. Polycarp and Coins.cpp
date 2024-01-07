@@ -1,6 +1,6 @@
-// Problem: Make All Zero
-// Contest: CodeChef - START115B
-// URL: https://www.codechef.com/START115B/problems/MAKE0?tab=statement
+// Problem: A. Polycarp and Coins
+// Contest: Codeforces - Codeforces Round 734 (Div. 3)
+// URL: https://codeforces.com/problemset/problem/1551/A
 // Memory Limit: 256 MB
 // Time Limit: 1000 ms
 // 
@@ -136,32 +136,45 @@ void printBinary(int num){
 
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
+// 
+// void solve()
+// {
+     // ll x;
+     // cin>>x;
+     // ll m=(x/3)+1;
+     // ll n=x/3;
+//      
+     // // if(n%3!=0){
+     	// // cout<<n/3+1<<" "<<n/3<<endl;
+     // // }
+     // // else
+     // // cout<<n/3<<" "<<n/3<<endl;
+//    
+     	// if(n%3==0){
+     		// cout<<n<<" "<<n<<endl;
+     	// }
+//    
+//      	
+     	// else
+     	// cout<<m<<" "<<n<<endl;
+//      
+// }
 
-void solve()
-{
-   int n;
-   cin>>n;
-   
-   vi a(n);
-   fr(i,0,n){
-   	cin>>a[i];
-   }  
-   vi m;
-   m.pb(a[0]);
-   
-   fr(i,1,n){
-   	if(a[i]<=m.back())
-   	m.pb(a[i]);
-   	
-   }
-   
-   reverse(all(m));
-   int ans=n;
-   fr(i,0,m.size()){
-   	ans=min(ans,n-i-1+m[i]);
-   	
-   }
-   cout<<ans<<endl;
+void solve(){
+	int n;
+	cin>>n;
+	
+	int x=n/3;
+	int y=x+1;
+	
+	
+	if(n%3==0){
+		cout<<x<<" "<<x<<endl;
+	}
+	else if( n%3==2)
+	cout<<x<<" "<<y<<endl;
+	else
+	cout<<y<<" "<<x<<endl;
 }
 
 
@@ -177,6 +190,8 @@ int main()
     {
        solve(); 
     }
+    
+    // solve();
  
     return 0;  
 }

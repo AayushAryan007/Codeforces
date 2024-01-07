@@ -1,8 +1,8 @@
-// Problem: Make All Zero
-// Contest: CodeChef - START115B
-// URL: https://www.codechef.com/START115B/problems/MAKE0?tab=statement
+// Problem: B. Array Reodering
+// Contest: Codeforces - Educational Codeforces Round 110 (Rated for Div. 2)
+// URL: https://codeforces.com/problemset/problem/1535/B
 // Memory Limit: 256 MB
-// Time Limit: 1000 ms
+// Time Limit: 2000 ms
 // 
 // Powered by CP Editor (https://cpeditor.org)
 
@@ -17,7 +17,7 @@ using namespace std;
 #define mp(a,b) make_pair(a,b)
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
-#define fr(i, x, n) for (int i = x; i < n; i++)
+#define fr(i, x, n) for (ll i = x; i < n; i++)
 #define nfr(i, x, n) for (int i = x; i > n; i--)
 #define sp(x) setprecision(x)
 #define vi vector<int>
@@ -139,29 +139,28 @@ void printBinary(int num){
 
 void solve()
 {
-   int n;
-   cin>>n;
-   
-   vi a(n);
-   fr(i,0,n){
-   	cin>>a[i];
-   }  
-   vi m;
-   m.pb(a[0]);
-   
-   fr(i,1,n){
-   	if(a[i]<=m.back())
-   	m.pb(a[i]);
-   	
-   }
-   
-   reverse(all(m));
-   int ans=n;
-   fr(i,0,m.size()){
-   	ans=min(ans,n-i-1+m[i]);
-   	
-   }
-   cout<<ans<<endl;
+    ll n;
+    cin>>n;
+    vll v,e,o;
+    fr(i,0,n){
+    	  int x;
+    	  cin>>x;
+    	  if(x%2==0) e.pb(x);
+    	  else o.pb(x);
+    }
+    
+    for(auto i:e) v.pb(i);
+    for(auto i:o) v.pb(i);
+     
+    // sort(rall(v));
+    ll count=0;
+    fr(i,0,n){
+    	fr(j,i+1,n){
+    		if(__gcd(v[i],2*v[j])>1)
+    		count++;
+    	}
+    } 
+    cout<<count<<endl;
 }
 
 
@@ -177,6 +176,8 @@ int main()
     {
        solve(); 
     }
+    
+    // solve();
  
     return 0;  
 }
