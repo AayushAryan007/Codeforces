@@ -1,6 +1,6 @@
-// Problem: D. Divisible Pairs
-// Contest: Codeforces - Codeforces Round 925 (Div. 3)
-// URL: https://codeforces.com/contest/1931/problem/D
+// Problem: C. Sasha and the Casino
+// Contest: Codeforces - Codeforces Round 926 (Div. 2)
+// URL: https://codeforces.com/contest/1929/problem/C
 // Memory Limit: 256 MB
 // Time Limit: 2000 ms
 // 
@@ -186,127 +186,145 @@ int powi(int base, int exponent) {
  
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
+// void solve(){
+// 	
+	     // int k, x, a;
+        // cin >> k >> x >> a;
 // 
-
-
+        // int temp = a;
+//         
+        // if(a==1){
+        	// cout<<"NO"<<endl;
+        // }
+        // else if(a%2==0 and a/2>x){
+        	// temp-=x;
+//         	
+        	// if(k*temp>=a){
+        		// cout<<"YES"<<endl;
+        	// }
+        	// else{
+        		// cout<<"NO"<<endl;
+        	// }
+        // }
+//         
+        // else cout<<"NO"<<endl;
+//         
+// 	
+// }
+// 
 
 int main(){
 	int t;
 	cin>>t;
-	while(t--){
-		ll n,x,y;
-		cin>>n>>x>>y;
-		
-		ll ans=0;
-		
-		vll a(n);
-		
-		for(auto &i:a) cin>>i;
-		
-		map<pair<ll,ll>,ll>m;
-		
-		for(auto &i:a){
-			ll xm=(x-(i%x))%x;
-			ll ym=i%y;
-			ans+=m[{xm,ym}];
-			m[{i%x,i%y}]++;
-		}
-		cout<<ans<<endl;
-	}
+   while(t--){
+   	  int k,x,a;
+   	  cin>>k>>x>>a;
+   	  int used=0;
+   	  int flag=1;
+   	  
+   	  for(int i=0;i<=x;i++){
+   	  	int ti=used/(k-1) +1;
+   	  	used+=ti;
+   	  	
+   	  	if(used>a){
+   	  		flag=0;
+   	  	}
+   	  }
+   	  
+   	  cout<<(flag?"YES":"NO")<<endl;
+   }
 }
-
-
-
-
-
-
-
-
-
-
-
+// int main() {
+    // int t;
+    // cin >> t;
+// 
+    // while (t--) {
+       // solve();
+//        
+    // }
+// 
+    // return 0;
+// }
+// 
+// long long next_bet(long long cur_loss, long long k) {
+// 	
+	// long long h=(cur_loss + k - 1);
+    // return  h/ (k - 1);
+// }
+// 
+// int main() {
+    // int t;
+    // std::cin >> t;
+// 
+    // std::vector<std::tuple<long long, long long, long long>> test_cases;
+    // while (t--) {
+        // long long k, x, a;
+        // std::cin >> k >> x >> a;
+        // test_cases.push_back({k, x, a});
+    // }
+// 
+    // std::vector<std::string> results;
+    // for (const auto& test_case : test_cases) {
+        // long long k = std::get<0>(test_case);
+        // long long x = std::get<1>(test_case);
+        // long long a = std::get<2>(test_case);
+// 
+        // long long u = 0;
+        // int op = 1;
+// 
+        // for (int i = 0; op && i < x; i++) {
+            // long long v = next_bet(u, k);
+//             
+            // if(v==0){
+            	// u+=1;
+//             	
+            // } else u+=v;
+//            
+         // if(u <= a) op=1; else op=0;
+        // }
+// 
+       // if (k * (a - u) > a) {
+        // results.push_back("YES");
+    // } else {
+        // results.push_back("NO");
+    // }
+    // }
+// 
+    // for (const auto& result : results) {
+        // std::cout << result <<endl;
+    // }
+// 
+    // return 0;
+// }
 
 // int main() {
     // int t;
     // std::cin >> t;
-// nt n, x, y;
-        // cin >> n >> x >> y;
-        // int arr[n];
 // 
-        // for (int i = 0; i < n; i++) {
-            // cin >> arr[i];
-        // }
-// 
-        // map<pair<int, int>, int> mp;
-        // int ans = 0;
-// 
-        // for (int i = 0; i < n; i++) {
-            // int p = arr[i] % x;
-            // int q = arr[i] % y;
-            // ans += mp[{x - p, q}];
-//             
-            // if (p == 0) {
-                // p = x;
-            // }
-// 
-            // mp[{p, q}]++;
-        // }
-// 
-        // cout << ans << endl; 
     // while (t--) {
-    	   // long long n, x, y;
-        // cin >> n ;
-           // vector<long long> v(n);
-           // cin>>x>>y;
-//         
-//         
-//      
+        // int k, x, n;
+        // std::cin >> k >> x >> n;
 // 
-        // for (long long   i = 0; i < n; i++) {
-//         	
-            // cin >> v[i];
-        // }
-// 
-        // map<pair<long long, long long>,  long long> l;
-        // long long ans = 0;
-// long long p ;
-        // for (long long i = 0; i < n; i++) {   long long q = v[i] % y;
-//             
-//             
-        // p=     v[i] % x;
-//          
-//          
-//          
-            // ans += l[{x - p, q}];
-// 
-            // if (p == 0) {
-                // p = x;
+        // int loss = 1;
+        // bool f = true;
+        // for (int i = 2; i <= x; i++) {
+            // int z = loss / (k - 1);
+            // while ((z * (k - 1)) <= loss) {
+                // z++;
             // }
-// 
-// 
-            // l[{p, q}]++;
+            // loss += z;
+            // if (loss >= n) {
+                // f = false;
+            // }
         // }
 // 
-        // cout << ans << endl;
-        // // int n, x, y;
-        // // std::cin >> n >> x >> y;
-// // 
-        // // std::vector<int> a(n);
-        // // for (int i = 0; i < n; ++i) {
-            // // std::cin >> a[i];
-        // // }
-// // 
-        // // int beautifulPairs = 0;
-// // 
-        // // for (int i = 0; i < n; ++i) {
-            // // for (int j = i + 1; j < n; ++j) {
-                // // if ((a[i] + a[j]) % x == 0 && (a[i] - a[j]) % y == 0) {
-                    // // beautifulPairs++;
-                // // }
-            // // }
-        // // }
-// // 
-        // // std::cout << beautifulPairs <<endl;
+        // int left = n - loss;
+        // int after = k * left;
+        // if (after > n && f) {
+            // std::cout << "YES" << endl;
+        // } else {
+            // std::cout << "NO" <<endl;
+        // }
     // }
 // 
     // return 0;

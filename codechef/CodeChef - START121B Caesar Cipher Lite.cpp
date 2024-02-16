@@ -1,8 +1,8 @@
-// Problem: D. Divisible Pairs
-// Contest: Codeforces - Codeforces Round 925 (Div. 3)
-// URL: https://codeforces.com/contest/1931/problem/D
+// Problem: Caesar Cipher Lite
+// Contest: CodeChef - START121B
+// URL: https://www.codechef.com/START121B/problems/CAESARLITE
 // Memory Limit: 256 MB
-// Time Limit: 2000 ms
+// Time Limit: 1000 ms
 // 
 // Powered by CP Editor (https://cpeditor.org)
 
@@ -186,130 +186,32 @@ int powi(int base, int exponent) {
  
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
-// 
 
 
-
-int main(){
-	int t;
-	cin>>t;
-	while(t--){
-		ll n,x,y;
-		cin>>n>>x>>y;
-		
-		ll ans=0;
-		
-		vll a(n);
-		
-		for(auto &i:a) cin>>i;
-		
-		map<pair<ll,ll>,ll>m;
-		
-		for(auto &i:a){
-			ll xm=(x-(i%x))%x;
-			ll ym=i%y;
-			ans+=m[{xm,ym}];
-			m[{i%x,i%y}]++;
-		}
-		cout<<ans<<endl;
-	}
+int main() {
+    int T;
+    cin >> T;
+    while(T--) {
+        int N;
+        cin >> N;
+        string P, C;
+        cin >> P >> C;
+        vector<int> K(N);
+        for(int i = 0; i < N; i++) {
+            int shifts = 0;
+            char current_char = P[i];
+            while(current_char != C[i]) {
+                current_char = (current_char - 'A' + 3) % 26 + 'A';
+                shifts++;
+            }
+            K[i] = shifts;
+        }
+        for(int i : K) {
+            cout << i << " ";
+        }
+        cout << endl;
+    }
+    return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// int main() {
-    // int t;
-    // std::cin >> t;
-// nt n, x, y;
-        // cin >> n >> x >> y;
-        // int arr[n];
-// 
-        // for (int i = 0; i < n; i++) {
-            // cin >> arr[i];
-        // }
-// 
-        // map<pair<int, int>, int> mp;
-        // int ans = 0;
-// 
-        // for (int i = 0; i < n; i++) {
-            // int p = arr[i] % x;
-            // int q = arr[i] % y;
-            // ans += mp[{x - p, q}];
-//             
-            // if (p == 0) {
-                // p = x;
-            // }
-// 
-            // mp[{p, q}]++;
-        // }
-// 
-        // cout << ans << endl; 
-    // while (t--) {
-    	   // long long n, x, y;
-        // cin >> n ;
-           // vector<long long> v(n);
-           // cin>>x>>y;
-//         
-//         
-//      
-// 
-        // for (long long   i = 0; i < n; i++) {
-//         	
-            // cin >> v[i];
-        // }
-// 
-        // map<pair<long long, long long>,  long long> l;
-        // long long ans = 0;
-// long long p ;
-        // for (long long i = 0; i < n; i++) {   long long q = v[i] % y;
-//             
-//             
-        // p=     v[i] % x;
-//          
-//          
-//          
-            // ans += l[{x - p, q}];
-// 
-            // if (p == 0) {
-                // p = x;
-            // }
-// 
-// 
-            // l[{p, q}]++;
-        // }
-// 
-        // cout << ans << endl;
-        // // int n, x, y;
-        // // std::cin >> n >> x >> y;
-// // 
-        // // std::vector<int> a(n);
-        // // for (int i = 0; i < n; ++i) {
-            // // std::cin >> a[i];
-        // // }
-// // 
-        // // int beautifulPairs = 0;
-// // 
-        // // for (int i = 0; i < n; ++i) {
-            // // for (int j = i + 1; j < n; ++j) {
-                // // if ((a[i] + a[j]) % x == 0 && (a[i] - a[j]) % y == 0) {
-                    // // beautifulPairs++;
-                // // }
-            // // }
-        // // }
-// // 
-        // // std::cout << beautifulPairs <<endl;
-    // }
-// 
-    // return 0;
-// }
 
 

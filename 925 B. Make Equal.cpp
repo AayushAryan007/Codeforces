@@ -188,58 +188,96 @@ int powi(int base, int exponent) {
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-bool canMakeEqual(int n, std::vector<int>& containers) {
-    int totalWater = 0;
-    
-    
-    
-    for (int i = 0; i < n; ++i) {
-        totalWater += containers[i];
-    }
-    
-    
+// bool canMakeEqual(int n, std::vector<int>& containers) {
+    // int totalWater = 0;
+//     
+//     
+//     
+    // for (int i = 0; i < n; ++i) {
+        // totalWater += containers[i];
+    // }
+//     
+//     
+// 
+    // if (totalWater % n != 0) {
+        // return false;
+    // }
+// 
+//  
+//     
+//     
+    // int excessWater = 0;
+   // int targetWater = totalWater / n;
+    // for (int i = 0; i < n; ++i) {
+//     	
+//     	
+        // excessWater += containers[i] - targetWater;
+        // if (excessWater < 0) {
+//         	
+            // return false;
+        // }
+    // }
+// 
+    // return true;
+// }
+// 
 
-    if (totalWater % n != 0) {
-        return false;
+void solve(){
+   int n;
+   cin>>n;
+   int sum=0;
+   vi v(n);
+    fr(i,0,n) {cin>>v[i];
+    
+    sum+=v[i];
     }
-
- 
+    int req=	sum/n;
     
-    
-    int excessWater = 0;
-   int targetWater = totalWater / n;
-    for (int i = 0; i < n; ++i) {
+    int extra=0;
+    for(int i=0;i<n;i++){
+    	  
+    	  if(v[i]==req) continue;
+    	  else if(v[i]>req){
+    	  	 extra+=v[i]-req;
+    	  }
+    	  else if(v[i]<req){
+    	  	if(req-v[i]<=extra){
+    	  		extra-=(req-v[i]);
+    	  		
+    	  	}
+    	  	else{
+    	  		cout<<"NO"<<endl;
+    	  		return;
+    	  		
+    	  	}
+    	  }
     	
-    	
-        excessWater += containers[i] - targetWater;
-        if (excessWater < 0) {
-        	
-            return false;
-        }
     }
-
-    return true;
+    cout<<"YES"<<endl;
+    
+    
 }
-
 int main() {
     int t;
     std::cin >> t;
-
-    for (int i = 0; i < t; ++i) {
-        int n;
-        std::cin >> n;
-
-        std::vector<int> containers(n);
-        for (int j = 0; j < n; ++j) {
-            std::cin >> containers[j];
-        }
-
-        if (canMakeEqual(n, containers)) {
-            std::cout << "YES" <<endl;
-        } else {
-            std::cout << "NO" << endl;
-        }
-    }
+while(t--){
+	solve();
+}
+    // for (int i = 0; i < t; ++i) {
+        // int n;
+        // std::cin >> n;
+// 
+        // std::vector<int> containers(n);
+        // for (int j = 0; j < n; ++j) {
+            // std::cin >> containers[j];
+        // }
+// 
+        // if (canMakeEqual(n, containers)) {
+            // std::cout << "YES" <<endl;
+        // } else {
+            // std::cout << "NO" << endl;
+        // }
+    // }
 
     return 0;
 }
