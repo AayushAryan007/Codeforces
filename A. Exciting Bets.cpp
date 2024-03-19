@@ -1,8 +1,8 @@
-// Problem: E. Negatives and Positives
-// Contest: Codeforces - Codeforces Round 849 (Div. 4)
-// URL: https://codeforces.com/contest/1791/problem/E
+// Problem: A. Exciting Bets
+// Contest: Codeforces - Codeforces Round 730 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/1543/A
 // Memory Limit: 256 MB
-// Time Limit: 2000 ms
+// Time Limit: 1000 ms
 // 
 // Powered by CP Editor (https://cpeditor.org)
 
@@ -195,126 +195,62 @@ ll sumvec(vector<ll> & v){
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
-// void solve() {
-    // ll n;
-    // cin >> n;
-    // vector<ll> v(n);
-    // ll orig = 0;
-    // fr(i, 0, n) {
-        // cin >> v[i];
-        // orig += v[i];
-    // }
-//     
-    // ll minpairsum = INT_MAX;
-    // ll l, r;
-    // for (ll i = 0; i < n - 1; i++) {
-        // if (v[i] + v[i + 1] < (0 - v[i] - v[i + 1]) && v[i] + v[i + 1] < minpairsum) {
-            // l = i, r = i + 1;
-            // minpairsum = v[i] + v[i + 1];
-        // }
-    // }
-//     
-    // if (v[n - 1] + v[0] < (0 - v[n - 1] - v[0]) && v[n - 1] + v[0] < minpairsum) {
-        // l = n - 1, r = 0;
-        // minpairsum = v[n - 1] + v[0];
-    // }
-//     
-    // v[l] = 0 - v[l];
-    // v[r] = 0 - v[r];
-//     
-    // ll sum = 0;
-    // for (ll i = 0; i < n; i++) {
-        // sum += v[i];
-    // }
-//     
-    // cout << max(sum, orig) << endl;
-// }
-
-
-// void solve(){
-	  // ll n;
-    // cin >> n;
-    // vector<ll> v(n);
-    // ll orig = 0;
-    // fr(i, 0, n) {
-        // cin >> v[i];
-        // orig += v[i];
-    // }
-//     
-    // ll minpairsum = INT_MAX;
-    // ll l, r;
-    // for (ll i = 0; i < n - 1; i++) {
-       // if(v[i]+v[i+1]<(0-v[i]-v[i+1])){
-       	 // if(v[i]+v[i+1] < minpairsum){
-       	 	// minpairsum=v[i]+v[i+1] ;
-       	 	// l=i,r=i+1;
-       	 // }
-       // }
-    // }
-    // v[l] = 0 - v[l];
-    // v[r] = 0 - v[r];
-     // ll new_sum = 0;
-    // for (ll i = 0; i < n; i++) {
-        // new_sum += v[i];
-    // }
-//     
-    // // Compare new sum with original sum
-    // if (new_sum > orig) {
-        // cout << new_sum << endl;
-    // } else {
-        // cout <<  orig<< endl;
-    // }
-//     
-//     
-// }
-
-void solve(){
-	ll n;
-	cin>>n;
-	ll sum=0;
-	vector<ll> v(n);
-	ll zero=0;
-		ll k=INT_MAX;
-	ll possum=0;
-	ll neg=0;
-	
-	fr(i,0,n){
-		cin>>v[i];
-		if(v[i]==0){
-			zero++;
-		}
-		k=min(k,abs(v[i]));
-		if(v[i]<0) neg++;
-		possum+=abs(v[i]);
-		sum+=v[i];
-	}
-
-	if(neg%2==0 or  k==0){
-		cout<<possum<<endl;
-		return;
-	}
-	
-	
-	possum-=2*k;
-	cout<<possum<<endl;
-	
-	
-	// for(int i=1;i<n;i++){
-		// int curs=v[i-1]+v[i];
-// 		
-		// if(sum<sum-2*(curs)){
-			// sum=sum-(2*curs);
-// 		
-		// v[i]=0-v[i];
-		// }
-// 		
-// 		
-	// }
-// 	
-	// cout<<sum<<endl;
- 	
-	
+void solve()
+{
+     ll a,b;
+     cin>>a>>b;
+     
+     if(a==b){
+     	cout<<0<<" "<<0<<endl;
+     	return;
+     	
+     }
+    
+     
+     if(a>b) swap(a,b);
+     
+     ll x= abs(a-b);
+     ll y = a%x;
+     
+     y=min(y,x-y);
+     
+     cout<<x<<" "<<y<<endl;
+     // int x=a , y=b;
+     // int count=0;
+     // int steps=0;
+     // int maxGCD1=0,maxGCD2=0;
+     // while(a%b!=2 and b%a!=2){
+     	// steps++;
+     	// a++;
+     	// b++;
+     	// maxGCD2=__gcd(a,b);
+     // }
+     // a=x,b=y;
+     // int neg=0;
+     // while(a>=0 and b>=0){
+     	// if(a%b==2 or b%a==2){
+     		// maxGCD2=__gcd(a,b);
+     		// break;
+     	// }
+     	// else{
+     		// a--;b--; 
+     		 // neg++;
+     	// }
+     // }
+//      
+//      
+     // neg=min(neg,steps);
+     // if(__gcd(x,y)==maxGCD){
+     	// cout<<maxGCD<<" "<<0<<endl;
+     // }
+     // else{
+     	// cout<<maxGCD<<" "<<neg<<endl;
+     // }
+     
+    
 }
+
+
 int main()  
 {
     ios_base::sync_with_stdio(false);  

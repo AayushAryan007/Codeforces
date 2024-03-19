@@ -1,8 +1,8 @@
-// Problem: E. Negatives and Positives
-// Contest: Codeforces - Codeforces Round 849 (Div. 4)
-// URL: https://codeforces.com/contest/1791/problem/E
+// Problem: Binary Minimal
+// Contest: CodeChef - START125B
+// URL: https://www.codechef.com/START125B/problems/BILM
 // Memory Limit: 256 MB
-// Time Limit: 2000 ms
+// Time Limit: 1000 ms
 // 
 // Powered by CP Editor (https://cpeditor.org)
 
@@ -194,141 +194,171 @@ ll sumvec(vector<ll> & v){
  
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
-
 // void solve() {
-    // ll n;
-    // cin >> n;
-    // vector<ll> v(n);
-    // ll orig = 0;
-    // fr(i, 0, n) {
-        // cin >> v[i];
-        // orig += v[i];
+// 	
+	// // int n, k;
+    // // cin >> n >> k;
+    // // string s;
+    // // cin >> s;
+// // 
+    // // vector<char> result(s.begin(), s.end());
+    // // vector<int> ind;
+    // // int cnt = 0;
+// // 
+    // // for (int i = 0; i < n; i++) {
+        // // if (s[i] == '1') {
+            // // cnt++;
+        // // }
+    // // }
+// // 
+    // // if (cnt > k) {
+        // // for (int i = 0; i < n; i++) {
+            // // if (s[i] == '1' && k > 0) {
+                // // result[i] = '0';
+                // // k--;
+            // // }
+        // // }
+        // // cout << string(result.begin(), result.end()) << endl;
+    // // } else {
+        // // for (int i = 0; i < (n - k); i++) {
+            // // cout << 0;
+        // // }
+        // // cout << endl;
+// // 
+	// // }
+// 	
+    // int n, k;
+    // cin >> n >> k;
+    // string s;
+    // cin >> s;
+// 
+    // string ans = "";
+//     
+//     
+    // vector<int> pref(n,0);
+    // if(s[n-1]=='1') pref[n-1]=1;
+    // for(int i=n-2;i>=0;i--){
+    	// if(s[i]=='1'){
+    		// pref[i]=pref[i]+pref[i+1]+1;
+    	// }
+    	// else{
+    		// pref[i]=pref[i+1];
+    	// }
     // }
-//     
-    // ll minpairsum = INT_MAX;
-    // ll l, r;
-    // for (ll i = 0; i < n - 1; i++) {
-        // if (v[i] + v[i + 1] < (0 - v[i] - v[i + 1]) && v[i] + v[i + 1] < minpairsum) {
-            // l = i, r = i + 1;
-            // minpairsum = v[i] + v[i + 1];
-        // }
+    // // debug(pref)
+// //     
+    // for(int i=0;i<n;i++){
+    	// if(k>0){
+//     		   
+    		   	// if(pref[i]>0){
+    		   		// if(s[i]=='1') k--;
+    		   		// ans+="0";
+    		   		// }
+    		   	// else {
+    		   		// ans+="";
+    		      	// k--;
+    		   	// }
+//     		   
+//     		
+    	// }
+    	// else{
+    		// ans+=s[i];
+    	// }
     // }
+    // cout<<ans<<endl;
 //     
-    // if (v[n - 1] + v[0] < (0 - v[n - 1] - v[0]) && v[n - 1] + v[0] < minpairsum) {
-        // l = n - 1, r = 0;
-        // minpairsum = v[n - 1] + v[0];
-    // }
-//     
-    // v[l] = 0 - v[l];
-    // v[r] = 0 - v[r];
-//     
-    // ll sum = 0;
-    // for (ll i = 0; i < n; i++) {
-        // sum += v[i];
-    // }
-//     
-    // cout << max(sum, orig) << endl;
-// }
-
-
-// void solve(){
-	  // ll n;
-    // cin >> n;
-    // vector<ll> v(n);
-    // ll orig = 0;
-    // fr(i, 0, n) {
-        // cin >> v[i];
-        // orig += v[i];
-    // }
-//     
-    // ll minpairsum = INT_MAX;
-    // ll l, r;
-    // for (ll i = 0; i < n - 1; i++) {
-       // if(v[i]+v[i+1]<(0-v[i]-v[i+1])){
-       	 // if(v[i]+v[i+1] < minpairsum){
-       	 	// minpairsum=v[i]+v[i+1] ;
-       	 	// l=i,r=i+1;
-       	 // }
-       // }
-    // }
-    // v[l] = 0 - v[l];
-    // v[r] = 0 - v[r];
-     // ll new_sum = 0;
-    // for (ll i = 0; i < n; i++) {
-        // new_sum += v[i];
-    // }
-//     
-    // // Compare new sum with original sum
-    // if (new_sum > orig) {
-        // cout << new_sum << endl;
-    // } else {
-        // cout <<  orig<< endl;
-    // }
-//     
-//     
+    // // 
+    // // if (k > 0 and s[0] == '1') {
+        // // ans += '0';
+        // // k--;
+        // // flag++;
+    // // }
+// //     
+    // // int check=flag;
+// // int temp;
+    // // // Move to the first '1' after the initial '1' at index 0
+    // // while (flag < n && s[flag] != '1') {
+// //        
+        // // flag++;
+        // // if(s[flag]=='1'){
+            // // temp=check;
+            // // check=flag;
+            // // flag=temp;
+            // // break;
+        // // }
+    // // }
+// //     
+    // // fr(i,flag,check){
+    	// // ans+="0";
+// //     	
+    // // }
+// //      
+    // // // Continue processing the rest of the string
+    // // for (int i = check; i < n; i++) {
+        // // if (k > 0) {
+            // // if (s[i] == '1') {
+                // // ans += '0';
+                // // k--;
+            // // } else {
+                // // ans += "";
+                // // k--;
+            // // }
+        // // } else {
+            // // ans += s[i];
+        // // }
+    // // }
+// // 
+    // // cout << ans << endl;
 // }
 
 void solve(){
-	ll n;
-	cin>>n;
-	ll sum=0;
-	vector<ll> v(n);
-	ll zero=0;
-		ll k=INT_MAX;
-	ll possum=0;
-	ll neg=0;
-	
-	fr(i,0,n){
-		cin>>v[i];
-		if(v[i]==0){
-			zero++;
+	int n,k;
+	cin>>n>>k;
+	string s;
+	cin>>s;
+	int c1=0;
+	for(int i=0;i<n;i++){
+		if(s[i]=='1'){
+			c1++;
 		}
-		k=min(k,abs(v[i]));
-		if(v[i]<0) neg++;
-		possum+=abs(v[i]);
-		sum+=v[i];
 	}
-
-	if(neg%2==0 or  k==0){
-		cout<<possum<<endl;
+	string ans="";
+	if(c1<=k){
+		n=n-k;
+		for(int i=0;i<n;i++){
+			ans+="0";
+		}
+		
+		cout<<ans<<endl;
 		return;
 	}
 	
 	
-	possum-=2*k;
-	cout<<possum<<endl;
+	else {
+		for(int i=0;i<n;i++){
+			if(k<=0) break;
+			else if(s[i]=='1'){
+				s[i]='0';
+				k--;
+			
+				
+			}
+			
+		}
+	}
 	
+	cout<<s<<endl;
 	
-	// for(int i=1;i<n;i++){
-		// int curs=v[i-1]+v[i];
-// 		
-		// if(sum<sum-2*(curs)){
-			// sum=sum-(2*curs);
-// 		
-		// v[i]=0-v[i];
-		// }
-// 		
-// 		
-	// }
-// 	
-	// cout<<sum<<endl;
- 	
 	
 }
-int main()  
-{
-    ios_base::sync_with_stdio(false);  
-    cin.tie(NULL); cout.tie(NULL); // flushes cout  
-    
-    //start writing below
+
+int main() {
     int t;
-    cin>>t;
-    while(t--)
-    {
-       solve(); 
+    cin >> t;
+
+    while (t--) {
+        solve();
     }
-    
-    // solve();
- 
-    return 0;  
+
+    return 0;
 }

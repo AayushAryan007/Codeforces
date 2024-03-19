@@ -1,6 +1,6 @@
-// Problem: E. Negatives and Positives
+// Problem: F. Range Update Point Query
 // Contest: Codeforces - Codeforces Round 849 (Div. 4)
-// URL: https://codeforces.com/contest/1791/problem/E
+// URL: https://codeforces.com/contest/1791/problem/F
 // Memory Limit: 256 MB
 // Time Limit: 2000 ms
 // 
@@ -194,127 +194,75 @@ ll sumvec(vector<ll> & v){
  
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
-
-// void solve() {
-    // ll n;
-    // cin >> n;
-    // vector<ll> v(n);
-    // ll orig = 0;
-    // fr(i, 0, n) {
-        // cin >> v[i];
-        // orig += v[i];
+// 
+// int sumOfDigits(const int& num) {
+    // int sum = 0;
+    // for (int digit : num) {
+        // sum += digit - '0';
     // }
-//     
-    // ll minpairsum = INT_MAX;
-    // ll l, r;
-    // for (ll i = 0; i < n - 1; i++) {
-        // if (v[i] + v[i + 1] < (0 - v[i] - v[i + 1]) && v[i] + v[i + 1] < minpairsum) {
-            // l = i, r = i + 1;
-            // minpairsum = v[i] + v[i + 1];
-        // }
-    // }
-//     
-    // if (v[n - 1] + v[0] < (0 - v[n - 1] - v[0]) && v[n - 1] + v[0] < minpairsum) {
-        // l = n - 1, r = 0;
-        // minpairsum = v[n - 1] + v[0];
-    // }
-//     
-    // v[l] = 0 - v[l];
-    // v[r] = 0 - v[r];
-//     
-    // ll sum = 0;
-    // for (ll i = 0; i < n; i++) {
-        // sum += v[i];
-    // }
-//     
-    // cout << max(sum, orig) << endl;
+    // return sum;
 // }
-
-
-// void solve(){
-	  // ll n;
-    // cin >> n;
-    // vector<ll> v(n);
-    // ll orig = 0;
-    // fr(i, 0, n) {
-        // cin >> v[i];
-        // orig += v[i];
-    // }
-//     
-    // ll minpairsum = INT_MAX;
-    // ll l, r;
-    // for (ll i = 0; i < n - 1; i++) {
-       // if(v[i]+v[i+1]<(0-v[i]-v[i+1])){
-       	 // if(v[i]+v[i+1] < minpairsum){
-       	 	// minpairsum=v[i]+v[i+1] ;
-       	 	// l=i,r=i+1;
-       	 // }
-       // }
-    // }
-    // v[l] = 0 - v[l];
-    // v[r] = 0 - v[r];
-     // ll new_sum = 0;
-    // for (ll i = 0; i < n; i++) {
-        // new_sum += v[i];
-    // }
-//     
-    // // Compare new sum with original sum
-    // if (new_sum > orig) {
-        // cout << new_sum << endl;
-    // } else {
-        // cout <<  orig<< endl;
-    // }
-//     
-//     
-// }
-
-void solve(){
-	ll n;
-	cin>>n;
-	ll sum=0;
-	vector<ll> v(n);
-	ll zero=0;
-		ll k=INT_MAX;
-	ll possum=0;
-	ll neg=0;
-	
-	fr(i,0,n){
-		cin>>v[i];
-		if(v[i]==0){
-			zero++;
-		}
-		k=min(k,abs(v[i]));
-		if(v[i]<0) neg++;
-		possum+=abs(v[i]);
-		sum+=v[i];
+#define MOD 1000000007
+int calc(int x){
+	int ans=0;
+	while(x){
+		ans+=x%10;
+		x/=10;
+		
 	}
-
-	if(neg%2==0 or  k==0){
-		cout<<possum<<endl;
-		return;
-	}
-	
-	
-	possum-=2*k;
-	cout<<possum<<endl;
-	
-	
-	// for(int i=1;i<n;i++){
-		// int curs=v[i-1]+v[i];
-// 		
-		// if(sum<sum-2*(curs)){
-			// sum=sum-(2*curs);
-// 		
-		// v[i]=0-v[i];
-		// }
-// 		
-// 		
-	// }
-// 	
-	// cout<<sum<<endl;
- 	
+	return ans;
 	
 }
+void solve() {
+    int n, q;
+    cin >> n >> q;
+    vector<int> a(n);
+
+    set<int> st;
+    fr(i,0,n) st.insert(i);
+ st.insert(MOD); // to avoid overflow in lowerbound
+    // Input the initial array as strings
+    for (int i = 0; i < n; ++i) {
+        cin >> a[i];
+    }
+
+    // Process queries
+    for (int i = 0; i < q; ++i) {
+        int type;
+        cin >> type;
+        if (type == 1) {
+            // Update query
+            int l, r;
+            cin >> l >> r;
+            l--, r--;
+            int ind=l;
+            while(ind<=r){
+            	ind=*st.lower_bound(ind);
+            	if(ind>r) break;
+            	int temp= calc(a[ind]);
+            	if(a[ind]==temp){
+            		st.erase(ind);
+            		
+            	}
+            	a[ind]=temp;
+            	ind++;
+            }
+            // for (int j = l - 1; j <= r - 1; ++j) {
+//                 
+                // if (a[j] >= 10) {
+                    // a[j] = sumOfDigits(a[j]);
+                // }
+            // }
+        } else {
+            // Query of type 2
+            int x;
+            cin >> x;
+            cout << a[x - 1] << endl;
+        }
+    }
+}
+
+
 int main()  
 {
     ios_base::sync_with_stdio(false);  

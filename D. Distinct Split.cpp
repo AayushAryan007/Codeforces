@@ -1,6 +1,6 @@
-// Problem: E. Negatives and Positives
+// Problem: D. Distinct Split
 // Contest: Codeforces - Codeforces Round 849 (Div. 4)
-// URL: https://codeforces.com/contest/1791/problem/E
+// URL: https://codeforces.com/contest/1791/problem/D
 // Memory Limit: 256 MB
 // Time Limit: 2000 ms
 // 
@@ -184,135 +184,106 @@ ll sumvec(vector<ll> & v){
 		// }
 	// }
 // }
-
+// 
 // #ifndef Aayush_Ryan
 // #include "C:\Users\Ayush\Documents\Codeforces\handle_debug.hpp" 
 // #define debug(...) cout<<'[';debug_print(#__VA_ARGS__, __VA_ARGS__);cout<<"]\n";
 // #else
 // #define debug(...)
 // #endif
- 
+//  
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
-// void solve() {
-    // ll n;
-    // cin >> n;
-    // vector<ll> v(n);
-    // ll orig = 0;
-    // fr(i, 0, n) {
-        // cin >> v[i];
-        // orig += v[i];
-    // }
-//     
-    // ll minpairsum = INT_MAX;
-    // ll l, r;
-    // for (ll i = 0; i < n - 1; i++) {
-        // if (v[i] + v[i + 1] < (0 - v[i] - v[i + 1]) && v[i] + v[i + 1] < minpairsum) {
-            // l = i, r = i + 1;
-            // minpairsum = v[i] + v[i + 1];
+// void solve()
+// {
+     // int n;
+     // cin>>n;
+     // string s;
+     // cin>>s;
+     // int maxi=0;
+//      
+//      
+     // int maxSum = 0; // Maximum sum of distinct characters
+    // int leftSum = 0, rightSum = 0; // Sum of distinct characters for left and right substrings
+// 
+    // // Iterate through each possible split point
+    // for (int i = 1; i < n; i++) {
+        // unordered_set<char> leftChars; // Set to store distinct characters in the left substring
+        // unordered_set<char> rightChars; // Set to store distinct characters in the right substring
+// 
+        // // Calculate the sum of distinct characters in the left substring
+        // for (int j = 0; j < i; j++) {
+            // leftChars.insert(s[j]);
         // }
+        // leftSum = leftChars.size();
+// 
+        // // Calculate the sum of distinct characters in the right substring
+        // for (int j = i; j < n; j++) {
+            // rightChars.insert(s[j]);
+        // }
+        // rightSum = rightChars.size();
+// 
+        // // Update maxSum
+        // maxSum = max(maxSum, leftSum + rightSum);
     // }
-//     
-    // if (v[n - 1] + v[0] < (0 - v[n - 1] - v[0]) && v[n - 1] + v[0] < minpairsum) {
-        // l = n - 1, r = 0;
-        // minpairsum = v[n - 1] + v[0];
-    // }
-//     
-    // v[l] = 0 - v[l];
-    // v[r] = 0 - v[r];
-//     
-    // ll sum = 0;
-    // for (ll i = 0; i < n; i++) {
-        // sum += v[i];
-    // }
-//     
-    // cout << max(sum, orig) << endl;
+     // cout<<maxSum<<endl;
+     // // for(int i=0;i<n;i++){
+     	// // mp[s[i]]++;
+     	// // pref[i]=mp.size();
+     // // }
+// //      
+     // // //debug(pref)
+// //      
+     // // int i=1;
+// //      
+     // // while(pref[i]!=pref[i-1]){
+     	// // i++;
+     // // }
+// //      
+// //      
+// //      
+// //      
+     // // int ans=pref[i-1]+pref[n-1]-pref[i]+1;
+// //      
+     // // cout<<ans<<endl;
 // }
+// 
 
-
-// void solve(){
-	  // ll n;
-    // cin >> n;
-    // vector<ll> v(n);
-    // ll orig = 0;
-    // fr(i, 0, n) {
-        // cin >> v[i];
-        // orig += v[i];
-    // }
-//     
-    // ll minpairsum = INT_MAX;
-    // ll l, r;
-    // for (ll i = 0; i < n - 1; i++) {
-       // if(v[i]+v[i+1]<(0-v[i]-v[i+1])){
-       	 // if(v[i]+v[i+1] < minpairsum){
-       	 	// minpairsum=v[i]+v[i+1] ;
-       	 	// l=i,r=i+1;
-       	 // }
-       // }
-    // }
-    // v[l] = 0 - v[l];
-    // v[r] = 0 - v[r];
-     // ll new_sum = 0;
-    // for (ll i = 0; i < n; i++) {
-        // new_sum += v[i];
-    // }
-//     
-    // // Compare new sum with original sum
-    // if (new_sum > orig) {
-        // cout << new_sum << endl;
-    // } else {
-        // cout <<  orig<< endl;
-    // }
-//     
-//     
-// }
 
 void solve(){
-	ll n;
+	int n;
 	cin>>n;
-	ll sum=0;
-	vector<ll> v(n);
-	ll zero=0;
-		ll k=INT_MAX;
-	ll possum=0;
-	ll neg=0;
+	string s;
+	cin>>s;
 	
-	fr(i,0,n){
-		cin>>v[i];
-		if(v[i]==0){
-			zero++;
+	
+	vector<int> pref(n), suff(n);
+	
+	map<char,int> mp1,mp2;
+	
+	for(int i=0;i<n;i++){
+		mp1[s[i]]++;
+		pref[i]=mp1.size();
+	}
+	
+	for(int i=n-1;i>=0;i--){
+		mp2[s[i]]++;
+		suff[i]=mp2.size();
+	}
+	// debug(pref)
+	// debug(suff)
+	int maxi=0;
+	for(int i=1;i<n;i++){
+		if(pref[i]==pref[i-1]){
+			maxi=max(maxi,pref[i-1]+suff[i]);
+			maxi=max(maxi,pref[i-1]+pref[n-1]-pref[i]);
 		}
-		k=min(k,abs(v[i]));
-		if(v[i]<0) neg++;
-		possum+=abs(v[i]);
-		sum+=v[i];
 	}
-
-	if(neg%2==0 or  k==0){
-		cout<<possum<<endl;
-		return;
-	}
+	maxi=max(maxi,pref[n-1]);
 	
+	cout<<maxi<<endl;
 	
-	possum-=2*k;
-	cout<<possum<<endl;
-	
-	
-	// for(int i=1;i<n;i++){
-		// int curs=v[i-1]+v[i];
-// 		
-		// if(sum<sum-2*(curs)){
-			// sum=sum-(2*curs);
-// 		
-		// v[i]=0-v[i];
-		// }
-// 		
-// 		
-	// }
-// 	
-	// cout<<sum<<endl;
- 	
 	
 }
 int main()  
