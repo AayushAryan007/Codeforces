@@ -1,6 +1,6 @@
-// Problem: B. Incinerate
-// Contest: Codeforces - Codeforces Round 840 (Div. 2) and Enigma 2022 - Cybros LNMIIT
-// URL: https://codeforces.com/problemset/problem/1763/B
+// Problem: A. Trust Nobody
+// Contest: Codeforces - Codeforces Round 870 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/1826/A
 // Memory Limit: 256 MB
 // Time Limit: 1000 ms
 // 
@@ -197,54 +197,33 @@ ll sumvec(vector<ll> & v){
 
 void solve()
 {
-         ll n,k;
-     cin>>n>>k;
-    vector<pair<ll,ll>> vp(n);
-    ll maxi=0;
-    for(ll i=0;i<n;i++){
-    	cin>>vp[i].first;
-    	maxi=max(maxi,vp[i].first);
-    }
-    for(ll i=0;i<n;i++){
-    	cin>>vp[i].second;
-    }
-    
-    sort(all(vp));
-    vector<ll> mintilhere(n);
-    ll mini=INT_MAX;
-    for(ll i=n-1;i>=0;i--){
-    	mini=min(mini,vp[i].second);
-    	mintilhere[i]=mini;
-    }
-    
-    // debug(mintilhere);
-    
-    ll i=0;
-    ll sum=0;
-    while(i<n){
-    	
-    	sum+=k;
-    	
-    	while(i<n and vp[i].first-sum<=0){
-    		i++;
-    	}
-    	if(i<n)
-    	k-=mintilhere[i];
-    	
-    	if(k<=0 || i>=n){
-    		break;
-    	}
-    	
-    }
-    
-    
-    if(sum<maxi){
-    	cout<<"NO"<<endl;
-    }
-    else
-    cout<<"YES"<<endl;
-
-
+     int n;
+     cin>>n;
+     
+     vector<int> v(n);
+     fr(i,0,n) cin>>v[i];
+     int ans=-1;
+     for(int i=0;i<n;i++){
+     	    
+     	    int momn=0;
+     	    int liars=0;
+     	    for(int j=0;j<n;j++){
+     	    	if(v[j]>v[i]) momn++;
+     	    }
+     	    
+     	    for(int j=0;j<n;j++){
+     	    	if(v[j]>momn){
+     	    		liars++;
+     	    	}
+     	    }
+     	    
+     	    if(momn==liars and liars>=v[i]){
+     	    	ans=liars;
+     	    }
+     	    
+     }
+     
+     cout<<ans<<endl;
 }
 
 
