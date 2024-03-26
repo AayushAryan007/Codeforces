@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+#define int long long 
 template<typename A, typename B>
 ostream& operator<<(ostream& out, const pair<A, B>& x) {
     out << '(' << x.first << ',' << x.second << ')';
@@ -9,13 +9,13 @@ ostream& operator<<(ostream& out, const pair<A, B>& x) {
 
 template<typename T>
 ostream& operator<<(ostream& out, const vector<T>& x) {
-    for (long long int i = 0; i < x.size(); i++) out << x[i] << ' ';
+    for (int i = 0; i < x.size(); i++) out << x[i] << ' ';
     return out;
 }
 
 template<typename A, typename B>
 ostream& operator<<(ostream& out, const vector<pair<A, B>>& x) {
-    for (long long int i = 0; i < x.size(); i++) out << x[i] << ' ';
+    for (int i = 0; i < x.size(); i++) out << x[i] << ' ';
     return out;
 }
 
